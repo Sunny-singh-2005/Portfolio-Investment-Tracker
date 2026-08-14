@@ -1,0 +1,120 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
+
+  --color-paper: #E8ECE3;
+  --color-surface: #FBFDF8;
+  --color-ink: #17241C;
+  --color-ink-soft: #4A5B4D;
+  --color-ink-faint: #8A9A8B;
+  --color-line: #C4CCB8;
+  --color-line-strong: #9AA88F;
+  --color-gain: #2F6F4F;
+  --color-gain-soft: #E4EFE6;
+  --color-loss: #9C3B2C;
+  --color-loss-soft: #F3E5E0;
+  --color-accent: #B8752B;
+  --color-accent-soft: #F1E3CD;
+}
+
+@layer base {
+  html {
+    background: var(--color-paper);
+  }
+
+  body {
+    font-family: var(--font-body);
+    color: var(--color-ink);
+    background-image:
+      linear-gradient(var(--color-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+    background-size: 28px 28px;
+    background-color: var(--color-paper);
+    background-attachment: fixed;
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background: var(--color-accent-soft);
+    color: var(--color-ink);
+  }
+}
+
+@layer components {
+  .ledger-num {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Perforated stub edge - the signature motif, used sparingly on key summary cards */
+  .stub-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-line-strong);
+    position: relative;
+  }
+  .stub-card::before {
+    content: "";
+    position: absolute;
+    left: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line-strong);
+  }
+  .stub-card::after {
+    content: "";
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 12px;
+    height: 12px;
+    border-radius: 999px;
+    background: var(--color-paper);
+    border: 1px solid var(--color-line-strong);
+  }
+
+  .stamp {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.1rem 0.5rem;
+    border-radius: 3px;
+    border: 1px solid currentColor;
+    display: inline-block;
+    transform: rotate(-1.5deg);
+  }
+
+  .ledger-table th {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+    text-align: left;
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--color-line-strong);
+  }
+  .ledger-table td {
+    padding: 0.65rem 0.75rem;
+    border-bottom: 1px solid var(--color-line);
+  }
+  .ledger-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .field-label {
+    font-family: var(--font-display);
+    font-size: 0.72rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-ink-soft);
+  }
+}
